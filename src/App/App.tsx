@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import firebaseHandler from '../firebase/firebaseHandler';
-import Tablet from '../components/Tablet/Tablet';
 import LandingPage from '../components/LandingPage/LandingPage';
 const {grabData, getImgUrl, getTools} = firebaseHandler;
 
@@ -10,6 +9,11 @@ export interface Tool {
   description: string;
   url: string;
   backgroundColor: string;
+  sideColor: string;
+}
+export interface imgUrls {
+  reactImage: string;
+  typescriptImage: string;
 }
 
 const App = () => {
@@ -18,19 +22,22 @@ const App = () => {
   }
   
 const [tools, setTools] = useState([])
+const [load, setLoad] = useState(true)
   const initializeApp = () => {
     const toolSet = (tools: any) => {
       let t: Tool[] = tools.data;
       //@ts-ignore
       setTools(t)
+      setLoad(false)
     }
     let tools = getTools();
     tools.then((tools) => {
       toolSet(tools)
     })
   }
+  
   useEffect(() => {
-    initializeApp()
+    initializeApp();
   }, []);
   console.log(tools)
   return (
@@ -38,6 +45,7 @@ const [tools, setTools] = useState([])
         <header>
           <LandingPage
           tools={tools}
+          load={load}
           buttonPress={landingPageEnter} />
         </header>
     </div>

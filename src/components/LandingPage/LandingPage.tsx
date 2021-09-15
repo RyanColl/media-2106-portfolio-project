@@ -3,7 +3,7 @@ import ExperienceCard from "../ExperienceCard/ExperienceCard";
 import './LandingPage.css';
 import { Tool } from "../../App/App";
 const LandingPage = (props: any) => {
-    const {tools} = props;
+    const {tools, urls, load} = props;
     const height = window.innerHeight;
     return(
         <div style={{height}} className='landing-page'>
@@ -17,7 +17,9 @@ const LandingPage = (props: any) => {
                             href={'#'}
                             >
                                 <ExperienceCard
+                                    urls={urls}
                                     tool={tool}
+                                    load={load}
                                 />
                             </a>
                         )

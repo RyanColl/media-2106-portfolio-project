@@ -1,48 +1,77 @@
 .experience-card {
     width: 250px;
     height: 300px;
-    grid-template-columns: 1% 99%;
     box-shadow: 1px 1px 5px grey;
     background-color: white;
-    margin: 60px;
+    margin: 0 25px;
 }
 .side-color {
     z-index: 1;
-    grid-column: 1/2;
     height: 100%;
     width: 1%;
     transition: width ease-in-out 0.7s;
-    
+    margin-top: -300px;
 }
 .card-content {
-    grid-column: 2/3;
-    grid-row: 1/2;
     height: 100%;
-    width: 100%;
-    
 }
 .expanded-tools {
-    
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     transition: opacity 0.7s;
 }
-.hidden-tools{
-    opacity: 0;
-    display: none;
+.hidden-tools, .open-tools {
+    display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
+    transition: opacity 0.7s;
+    height: 100%;
+    width: auto;
+    padding: 0 30px;
+}
+.open-tools {
+    opacity: 0;
+}
+.hidden-tools{
+    opacity: 100;
+}
+.open-tools:hover{
+    opacity: 0;
     transition: opacity 0.7s;
 }
-.hidden-tools:hover, .experience-tools:hover {
+.experience-card:hover .hidden-tools {
     opacity: 100;
     transition: opacity 0.7s;
 }
-.tool-title {
+.tool-title, .tool-description {
     font-size: 16px;
     color: whitesmoke;
     font-weight: 250;
+    text-align: center;
+}
+.tool-title {
+    font-size: 32px;
+    font-weight: 350;
+}
+.skeleton-card {
+    animation: skeleton-card 3.5s linear infinite alternate;
+}
+
+@keyframes skeleton-card {
+    0% {background-color: rgb(175, 174, 174);}
+    50% {background-color: rgb(230, 230, 230);}
+    100% {background-color: rgb(175, 174, 174);}
+}
+
+@media only screen and (max-width: 600px) {
+    .tools {
+        margin-top: 300px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    
 }
