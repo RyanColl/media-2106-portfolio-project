@@ -1,9 +1,30 @@
 import { firebaseServices } from "./firebase";
-const {functions} = firebaseServices;
+const {functions, getImgUrl} = firebaseServices;
 const firebaseHandler = {
     grabData: async (pageName) => {
-        let grabData = functions.httpsCallable('grabData');
-        return (await grabData({"pageName": `${pageName}`})).data
+      
+        let grabData = functions.httpsCallable('grabHomePage');
+        
+        return grabData({"pageName": `${pageName}`})
+        .then((result) => {
+            // Getting Data
+            const data = result.data;
+            return data;
+          })
+          .catch((error) => {
+            // Getting the Error details.
+            const {code, message, details} = error;
+            console.log(`Error message: code: ${code}, message: ${message}, details: ${details}`)
+            return undefined;
+            // ...
+          });
+    },
+    getImgUrl: async imgName => {
+      return await getImgUrl(imgName);
+    },
+    getTools: async () => {
+      let getTools = functions.httpsCallable('getTools')
+      return await getTools();
     }
 }
 

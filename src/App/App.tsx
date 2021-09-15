@@ -1,28 +1,47 @@
-import logo from '../logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import firebaseHandler from '../firebase/firebaseHandler';
+import Tablet from '../components/Tablet/Tablet';
+import LandingPage from '../components/LandingPage/LandingPage';
+const {grabData, getImgUrl, getTools} = firebaseHandler;
 
-class App extends React.Component {
-  render() {
-    return(
-      <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-    )
-  }
+export interface Tool {
+  title: string;
+  description: string;
+  url: string;
+  backgroundColor: string;
 }
+
+const App = () => {
+  const landingPageEnter = () => {
+
+  }
+  
+const [tools, setTools] = useState([])
+  const initializeApp = () => {
+    const toolSet = (tools: any) => {
+      let t: Tool[] = tools.data;
+      //@ts-ignore
+      setTools(t)
+    }
+    let tools = getTools();
+    tools.then((tools) => {
+      toolSet(tools)
+    })
+  }
+  useEffect(() => {
+    initializeApp()
+  }, []);
+  console.log(tools)
+  return (
+    <div className="App">
+        <header>
+          <LandingPage
+          tools={tools}
+          buttonPress={landingPageEnter} />
+        </header>
+    </div>
+  );
+};
 
 export default App;

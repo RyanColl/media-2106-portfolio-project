@@ -1,0 +1,48 @@
+.experience-card {
+    width: 250px;
+    height: 300px;
+    grid-template-columns: 1% 99%;
+    box-shadow: 1px 1px 5px grey;
+    background-color: white;
+    margin: 60px;
+}
+.side-color {
+    z-index: 1;
+    grid-column: 1/2;
+    height: 100%;
+    width: 1%;
+    transition: width ease-in-out 0.7s;
+    
+}
+.card-content {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    height: 100%;
+    width: 100%;
+    
+}
+.expanded-tools {
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: opacity 0.7s;
+}
+.hidden-tools{
+    opacity: 0;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: opacity 0.7s;
+}
+.hidden-tools:hover, .experience-tools:hover {
+    opacity: 100;
+    transition: opacity 0.7s;
+}
+.tool-title {
+    font-size: 16px;
+    color: whitesmoke;
+    font-weight: 250;
+}
