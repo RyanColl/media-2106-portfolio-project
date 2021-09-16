@@ -11,14 +11,9 @@ export interface Tool {
   backgroundColor: string;
   sideColor: string;
 }
-export interface imgUrls {
-  reactImage: string;
-  typescriptImage: string;
-}
-
 const App = () => {
   const landingPageEnter = () => {
-
+    
   }
   
 const [tools, setTools] = useState([])

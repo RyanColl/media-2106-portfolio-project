@@ -1,0 +1,11 @@
+.skeleton {
+    border-radius: 1px;
+    animation: skeleton 3.5s linear infinite alternate;
+    margin: 0 25px;
+}
+
+@keyframes skeleton {
+    0% {background-color: rgb(175, 174, 174);}
+    50% {background-color: rgb(230, 230, 230);}
+    100% {background-color: rgb(175, 174, 174);}
+}

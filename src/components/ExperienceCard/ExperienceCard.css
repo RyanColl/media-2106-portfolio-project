@@ -56,15 +56,6 @@
     font-size: 32px;
     font-weight: 350;
 }
-.skeleton-card {
-    animation: skeleton-card 3.5s linear infinite alternate;
-}
-
-@keyframes skeleton-card {
-    0% {background-color: rgb(175, 174, 174);}
-    50% {background-color: rgb(230, 230, 230);}
-    100% {background-color: rgb(175, 174, 174);}
-}
 
 @media only screen and (max-width: 600px) {
     .tools {
