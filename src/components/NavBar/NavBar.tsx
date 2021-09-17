@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import './NavBar.css';
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import BuildSharpIcon from '@mui/icons-material/BuildSharp';
 import FaceSharpIcon from '@mui/icons-material/FaceSharp';
 import NavBubble from "./NavBubble/NavBubble";
 
+import {DndContext, useSensor, PointerSensor, closestCenter} from '@dnd-kit/core';
+import { arrayMove, horizontalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
+
 
 
 const NavBar = (props: any) => {
-    
-        const bubbleClick = (event: any, name: string) => {
-          
-        };
-        const bubbleData = [
+        const [bubbleData, setBubbleData] = useState([
           {
+            id: 1,
             bgColor: "#2FF3E0",
             iconColor: "#2e2e2e",
             toolTipText: "Apps",
@@ -24,6 +24,7 @@ const NavBar = (props: any) => {
             Icon: AppsSharpIcon
           },
           {
+            id: 2,
             bgColor: "#F51720",
             iconColor: "#2e2e2e",
             toolTipText: "Tools",
@@ -34,6 +35,7 @@ const NavBar = (props: any) => {
             Icon: BuildSharpIcon
           },
           {
+            id: 3,
             bgColor: "white",
             iconColor: "#2e2e2e",
             toolTipText: "About Me",
@@ -43,14 +45,44 @@ const NavBar = (props: any) => {
             },
             Icon: FaceSharpIcon
           }
-        ];
+        ]);
+
+
+
+        // draggable
+        const sensors = [useSensor(PointerSensor)]
+
+        const handleDrag = ({active, over}: any) => {
+            if(active.id !== over.id) {
+                
+                setBubbleData(bubbleData => {
+                    const oldIndex = bubbleData.findIndex(bubble => bubble.id === active.id)
+                    const newIndex = bubbleData.findIndex(bubble => bubble.id === over.id)
+                    return arrayMove(bubbleData, oldIndex, newIndex)
+                })
+            }
+        }
+
+
+
+
     return(
         <div className='navbar'>
             <div className='nav-bubble'>
-                {bubbleData.map(bubble => {
-                    const {bgColor, iconColor, toolTipText, bubbleClick, Icon} = bubble;
-                    return (<a onClick={(e) => {bubbleClick(e, toolTipText)}} ><NavBubble bgColor={bgColor} iconColor={iconColor} toolTipText={toolTipText} Icon={Icon} /></a>)
-                })}
+                <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={(e) => {handleDrag(e)}}
+                >
+                    <SortableContext
+                    items={bubbleData.map(bubble => `${bubble.id}`)}
+                    strategy={horizontalListSortingStrategy}
+                    >
+                        {bubbleData.map(bubble => {
+                            return <NavBubble {...bubble} />
+                        })}
+                    </SortableContext>
+                </DndContext>
             </div>
         </div>
     )

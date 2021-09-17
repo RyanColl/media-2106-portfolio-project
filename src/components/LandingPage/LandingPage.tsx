@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ExperienceCard from "../ExperienceCard/ExperienceCard";
 import './LandingPage.css';
 import { Tool } from "../../App/App";
@@ -11,8 +11,8 @@ const LandingPage = (props: any) => {
         return (
           <>
             {load
-              ? [1, 2, 3].map((int) => {
-                  return <Skeleton width={250} height={300} />;
+              ? [1, 2, 3].map((int, i) => {
+                  return <Skeleton key={i} width={250} height={300} />;
                 })
               : tools !== [] &&
                 tools.map((tool: Tool, i: number) => {
