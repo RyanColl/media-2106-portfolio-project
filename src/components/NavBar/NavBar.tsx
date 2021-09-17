@@ -5,7 +5,7 @@ import BuildSharpIcon from '@mui/icons-material/BuildSharp';
 import FaceSharpIcon from '@mui/icons-material/FaceSharp';
 import NavBubble from "./NavBubble/NavBubble";
 
-import {DndContext, useSensor, PointerSensor, closestCenter} from '@dnd-kit/core';
+import {DndContext, useSensor, useSensors, PointerSensor, closestCenter} from '@dnd-kit/core';
 import { arrayMove, horizontalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 
 
@@ -13,7 +13,7 @@ import { arrayMove, horizontalListSortingStrategy, SortableContext } from "@dnd-
 const NavBar = (props: any) => {
         const [bubbleData, setBubbleData] = useState([
           {
-            id: 1,
+            id: '1',
             bgColor: "#2FF3E0",
             iconColor: "#2e2e2e",
             toolTipText: "Apps",
@@ -24,7 +24,7 @@ const NavBar = (props: any) => {
             Icon: AppsSharpIcon
           },
           {
-            id: 2,
+            id: '2',
             bgColor: "#F51720",
             iconColor: "#2e2e2e",
             toolTipText: "Tools",
@@ -35,9 +35,9 @@ const NavBar = (props: any) => {
             Icon: BuildSharpIcon
           },
           {
-            id: 3,
-            bgColor: "white",
-            iconColor: "#2e2e2e",
+            id: '3',
+            bgColor: "#2e2e2e",
+            iconColor: "white",
             toolTipText: "About Me",
             bubbleClick: (e: any, toolTipText: string) => {
                 //@ts-ignore
@@ -75,7 +75,7 @@ const NavBar = (props: any) => {
                 onDragEnd={(e) => {handleDrag(e)}}
                 >
                     <SortableContext
-                    items={bubbleData.map(bubble => `${bubble.id}`)}
+                    items={bubbleData}
                     strategy={horizontalListSortingStrategy}
                     >
                         {bubbleData.map(bubble => {

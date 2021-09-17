@@ -1,7 +1,7 @@
 .skeleton {
     border-radius: 1px;
     animation: skeleton 3.5s linear infinite alternate;
-    margin: 0 25px;
+    margin: 20px 25px;
 }
 
 @keyframes skeleton {
