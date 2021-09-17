@@ -51,7 +51,7 @@ const NavBar = (props: any) => {
                     const {bgColor, iconColor, toolTipText, bubbleClick, Icon} = bubble;
                     return (<a onClick={(e) => {bubbleClick(e, toolTipText)}} ><NavBubble bgColor={bgColor} iconColor={iconColor} toolTipText={toolTipText} Icon={Icon} /></a>)
                 })}
-                </div>
+            </div>
         </div>
     )
 }
