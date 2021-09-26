@@ -16,3 +16,7 @@ export const getTools = functions.https.onCall(async (data, context) => {
         return data.data()
     })
 })
+
+export const getTime = functions.https.onCall(async (data, context) => {
+    return new Date().toLocaleTimeString()
+})

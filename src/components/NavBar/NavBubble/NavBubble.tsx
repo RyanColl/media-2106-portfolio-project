@@ -14,16 +14,17 @@ const NavBubble = (props: any) => {
     }
     return(
         <div
+        key={id} 
         ref={setNodeRef}
         {...attributes}
         {...listeners}
         //@ts-ignore
         style={style}
         >
-            <a key={id} onClick={(e) => {bubbleClick(e, toolTipText)}} >
+            <a onClick={(e) => {bubbleClick(e, toolTipText)}} >
                 <div 
                 data-tooltip={toolTipText} 
-                data-tooltip-location='bottom' 
+                data-tooltip-location='top' 
                 className='bubble'
                 style={{backgroundColor: bgColor}}
                 >

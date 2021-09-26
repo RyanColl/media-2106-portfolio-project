@@ -6,7 +6,7 @@ import FaceSharpIcon from '@mui/icons-material/FaceSharp';
 import NavBubble from "./NavBubble/NavBubble";
 
 import {DndContext, useSensor, useSensors, PointerSensor, closestCenter} from '@dnd-kit/core';
-import { arrayMove, horizontalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
+import { arrayMove, verticalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 
 
 
@@ -72,11 +72,12 @@ const NavBar = (props: any) => {
                 <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
-                onDragEnd={(e) => {handleDrag(e)}}
+                onDragOver={(e) => {handleDrag(e)}}
+                autoScroll={false}
                 >
                     <SortableContext
                     items={bubbleData}
-                    strategy={horizontalListSortingStrategy}
+                    strategy={verticalListSortingStrategy}
                     >
                         {bubbleData.map(bubble => {
                             return <NavBubble {...bubble} />

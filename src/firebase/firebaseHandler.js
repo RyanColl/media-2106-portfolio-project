@@ -25,6 +25,10 @@ const firebaseHandler = {
     getTools: async () => {
       let getTools = functions.httpsCallable('getTools')
       return await getTools();
+    },
+    getTime: async () => {
+      let getTime = functions.httpsCallable('getTime')
+      return await getTime();
     }
 }
 

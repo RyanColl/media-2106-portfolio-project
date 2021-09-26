@@ -4,10 +4,25 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.App {
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+body {
+  height: 2560px;
+  max-width: 2560px;
+  z-index: -1;
+  
 }
+.App {
+  height: 2977.5px;
+  overflow: hidden;   
+  opacity: 1.0; 
+  transition: background 1.5s;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  
+}
+
 
 @keyframes App-logo-spin {
   from {
