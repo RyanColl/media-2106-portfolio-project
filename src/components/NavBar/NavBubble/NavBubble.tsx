@@ -1,7 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import React from "react";
-
+import { Link } from "react-router-dom";
 const NavBubble = (props: any) => {
     const {id, Icon, toolTipText, iconColor, bgColor, bubbleClick} = props;
     const {
@@ -21,16 +21,16 @@ const NavBubble = (props: any) => {
         //@ts-ignore
         style={style}
         >
-            <a onClick={(e) => {bubbleClick(e, toolTipText)}} >
+            <Link to={toolTipText !== 'Home' ? `/${toolTipText}` : '/'} onClick={(e) => {bubbleClick(e, toolTipText)}} >
                 <div 
                 data-tooltip={toolTipText} 
-                data-tooltip-location='top' 
+                data-tooltip-location='bottom' 
                 className='bubble'
                 style={{backgroundColor: bgColor}}
                 >
                     <Icon sx={{color: iconColor}} fontSize="large" />
                 </div> 
-            </a>
+            </Link>
         </div>
     )
 }

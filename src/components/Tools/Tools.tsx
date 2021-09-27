@@ -1,10 +1,15 @@
 import React from "react";
 import ExperienceCard from "../ExperienceCard/ExperienceCard";
-import './LandingPage.css';
+import './Tools.css';
 import { Tool } from "../../App/App";
 import Skeleton from "../Skeleton/Skeleton";
-const LandingPage = (props: any) => {
-    const {tools, urls, load} = props;
+import { Link } from "react-router-dom";
+
+
+
+
+const Tools = (props: any) => {
+    const {tools, load} = props;
     const height = window.innerHeight;
     
     const MapTools = () => {
@@ -17,8 +22,8 @@ const LandingPage = (props: any) => {
               : tools !== [] &&
                 tools.map((tool: Tool, i: number) => {
                   return (
-                    <a key={i} className="card-link" href={"#"}>
-                      <ExperienceCard urls={urls} tool={tool} load={load} />
+                    <a key={i} className="card-link" href={`#`}>
+                      <ExperienceCard tool={tool} load={load} />
                     </a>
                   );
                 })}
@@ -27,7 +32,7 @@ const LandingPage = (props: any) => {
     }
 
     return(
-        <div style={{height}} className='landing-page'>
+        <div style={{height}} className='tool-div'>
             <div className='content'>
                 <div className='tools'>
                     <MapTools />
@@ -36,5 +41,5 @@ const LandingPage = (props: any) => {
         </div>
     )
 }
-export default LandingPage;
+export default Tools;
 

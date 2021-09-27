@@ -4,7 +4,7 @@ import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import BuildSharpIcon from '@mui/icons-material/BuildSharp';
 import FaceSharpIcon from '@mui/icons-material/FaceSharp';
 import NavBubble from "./NavBubble/NavBubble";
-
+import HomeIcon from '@mui/icons-material/Home';
 import {DndContext, useSensor, useSensors, PointerSensor, closestCenter} from '@dnd-kit/core';
 import { arrayMove, verticalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 
@@ -17,7 +17,7 @@ const NavBar = (props: any) => {
             bgColor: "#2FF3E0",
             iconColor: "#2e2e2e",
             toolTipText: "Apps",
-            bubbleClick: (e: any, toolTipText: string) => {
+            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
                 //@ts-ignore
                 console.log(`This is the screenx: ${e.screenX} and screen y: ${e.screenY} on tool ${toolTipText}`);
             },
@@ -28,7 +28,7 @@ const NavBar = (props: any) => {
             bgColor: "#F51720",
             iconColor: "#2e2e2e",
             toolTipText: "Tools",
-            bubbleClick: (e: any, toolTipText: string) => {
+            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
                 //@ts-ignore
                 console.log(`This is the screenx: ${e.screenX} and screen y: ${e.screenY} on tool ${toolTipText}`);
             },
@@ -38,12 +38,22 @@ const NavBar = (props: any) => {
             id: '3',
             bgColor: "#2e2e2e",
             iconColor: "white",
-            toolTipText: "About Me",
-            bubbleClick: (e: any, toolTipText: string) => {
+            toolTipText: "About",
+            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
                 //@ts-ignore
                 console.log(`This is the screenx: ${e.screenX} and screen y: ${e.screenY} on tool ${toolTipText}`);
             },
             Icon: FaceSharpIcon
+          },
+          {
+            id: '4',
+            bgColor: '#2F6BC7',
+            iconColor: 'white',
+            toolTipText: 'Home',
+            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
+                console.log('')
+            },
+            Icon: HomeIcon
           }
         ]);
 

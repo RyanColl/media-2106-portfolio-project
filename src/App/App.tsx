@@ -1,9 +1,10 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import firebaseHandler from '../firebase/firebaseHandler';
-import LandingPage from '../components/LandingPage/LandingPage';
+import Tools from '../components/Tools/Tools';
 import NavBar from '../components/NavBar/NavBar';
 import '../components/Tooltips/Tooltips.css'
+import { Switch, Route } from 'react-router-dom';
 const {grabData, getImgUrl, getTools, getTime} = firebaseHandler;
 
 export interface Tool {
@@ -14,6 +15,7 @@ export interface Tool {
   sideColor: string;
 }
 
+// set backgorund based on time
 const setBackground = async () => {
     let time: string = (await getTime()).data
     let index = time.search(':')
@@ -29,73 +31,77 @@ const setBackground = async () => {
     
 }
 
-const App = () => {
-  const landingPageEnter = () => {
-
+const toolArray: Tool[] = [
+  {
+    title: 'HTML',
+    description: 'Expert at DOM manipulation through both native javascript and React',
+    url: 'https://firebasestorage.googleapis.com/v0/b/fullstack-dev-f9c5a.appspot.com/o/html-white.png?alt=media&token=7c8f9e89-bcbc-4ee6-b1c3-2dcb7b744ebe',
+    backgroundColor: '#119FFA',
+    sideColor: '#B54E62'
+  },
+  {
+    title: 'React',
+    description: 'Proficient in the production of web apps using the language React',
+    url: 'https://firebasestorage.googleapis.com/v0/b/fullstack-dev-f9c5a.appspot.com/o/react-white.png?alt=media&token=d395d16d-7bed-4da6-8e1e-a81cb794f06d',
+    backgroundColor: '#5B5658',
+    sideColor: '#3AADBE'
+  },
+  {
+    title: 'TypeScript',
+    description: 'Learned the foundations of typescript. Class based object oriented javascript programming',
+    url: 'https://firebasestorage.googleapis.com/v0/b/fullstack-dev-f9c5a.appspot.com/o/typescript.png?alt=media&token=36a74ac8-d284-4fd0-a470-65d320b3b853',
+    backgroundColor: '#ffb703',
+    sideColor: '#3C4084'
   }
+]
+
+const App = () => {
   
 const [tools, setTools] = useState([])
 const [url, setUrl] = useState('river')
-const [load, setLoad] = useState(true)
+const [load, setLoad] = useState(false)
   const initializeApp = () => {
-    const toolSet = (tools: any) => {
-      let t: Tool[] = tools.data;
-      //@ts-ignore
-      setTools(t)
-      setLoad(false)
-    }
-    let tools = getTools();
-    tools.then((tools) => {
-      toolSet(tools)
-    })
-  }
-
-  // parralax
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    function handleScroll() {
-      setOffset(window.pageYOffset);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [offset]);
-
-
-
-  // components did mount
-  useEffect(() => {
+    //@ts-ignore
+    setTools([...toolArray])
     setBackground().then(url => {
       setUrl(url)
     })
+  }
+  // parralax
+  const [offset, setOffset] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => setOffset(window.pageYOffset);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [offset]);
+  // components did mount
+  useEffect(() => {
     initializeApp();
   }, []);
   return (
-    <body>
+    <div className='body'>
       <nav>
         <NavBar />
       </nav>
-      <div className="App" style={{backgroundImage: `url(./img/${url}.jpeg)`, transform: `translateY(${offset* -0.2}px)` }}>
-          <header style={{paddingTop: 1200}}>
-            
-            <LandingPage
-            tools={tools}
-            load={load}
-            buttonPress={landingPageEnter} />
+      <div className="App" style={{backgroundImage: `url(./img/${url}.jpeg)`, transform: `translateY(${offset* -0.3}px)` }}>
+          <Switch>
+            <Route path='/' exact>
 
-          </header>
-          <main>
+            </Route>
+            <Route path='/Apps'>
 
-          </main>
-          <footer>
+            </Route>
+            <Route path='/Tools'>
+              <Tools
+              tools={tools}
+              load={load} />
+            </Route>
+            <Route path='/About'>
 
-          </footer>
+            </Route>
+          </Switch>
       </div>
-    </body>
+    </div>
   );
 };
 

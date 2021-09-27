@@ -8,7 +8,6 @@ const ExperienceCard = (props: any) => {
     }
     const hoverOut = () => {
         setCardHover(false)
-        
     }
     const sideBarStyle = cardHover ? {width: "100%", backgroundColor: sideColor} : {backgroundColor: sideColor}
     const contentImg = {width: "100%", height: "auto"}

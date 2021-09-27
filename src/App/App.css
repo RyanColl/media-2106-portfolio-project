@@ -4,11 +4,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-body {
+.body {
   height: 2560px;
   max-width: 2560px;
   z-index: -1;
-  
+  background-color: black;
 }
 .App {
   height: 2977.5px;
@@ -20,7 +20,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
-  
 }
 
 
