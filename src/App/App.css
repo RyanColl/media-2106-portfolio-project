@@ -5,20 +5,19 @@
   }
 }
 .body {
-  height: 2560px;
-  max-width: 2560px;
+  height: 100%;
   z-index: -1;
   background-color: black;
 }
 .App {
-  height: 2977.5px;
+  height: 100%;
   overflow: hidden;   
   opacity: 1.0; 
   transition: background 1.5s;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   z-index: -1;
 }
 

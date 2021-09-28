@@ -8,53 +8,49 @@ import HomeIcon from '@mui/icons-material/Home';
 import {DndContext, useSensor, useSensors, PointerSensor, closestCenter} from '@dnd-kit/core';
 import { arrayMove, verticalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 
-
-
 const NavBar = (props: any) => {
+    const {bgChange} = props;
         const [bubbleData, setBubbleData] = useState([
           {
             id: '1',
-            bgColor: "#2FF3E0",
-            iconColor: "#2e2e2e",
-            toolTipText: "Apps",
-            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
-                //@ts-ignore
-                console.log(`This is the screenx: ${e.screenX} and screen y: ${e.screenY} on tool ${toolTipText}`);
-            },
-            Icon: AppsSharpIcon
-          },
-          {
-            id: '2',
-            bgColor: "#F51720",
-            iconColor: "#2e2e2e",
-            toolTipText: "Tools",
-            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
-                //@ts-ignore
-                console.log(`This is the screenx: ${e.screenX} and screen y: ${e.screenY} on tool ${toolTipText}`);
-            },
-            Icon: BuildSharpIcon
-          },
-          {
-            id: '3',
-            bgColor: "#2e2e2e",
-            iconColor: "white",
-            toolTipText: "About",
-            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
-                //@ts-ignore
-                console.log(`This is the screenx: ${e.screenX} and screen y: ${e.screenY} on tool ${toolTipText}`);
-            },
-            Icon: FaceSharpIcon
-          },
-          {
-            id: '4',
             bgColor: '#2F6BC7',
             iconColor: 'white',
             toolTipText: 'Home',
             bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
-                console.log('')
+                bgChange(toolTipText)
             },
             Icon: HomeIcon
-          }
+          },
+          {
+            id: '2',
+            bgColor: "#2FF3E0",
+            iconColor: "#2e2e2e",
+            toolTipText: "Apps",
+            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
+                bgChange(toolTipText)
+            },
+            Icon: AppsSharpIcon
+          },
+          {
+            id: '3',
+            bgColor: "#F51720",
+            iconColor: "#2e2e2e",
+            toolTipText: "Tools",
+            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
+                bgChange(toolTipText)
+            },
+            Icon: BuildSharpIcon
+          },
+          {
+            id: '4',
+            bgColor: "#2e2e2e",
+            iconColor: "white",
+            toolTipText: "About",
+            bubbleClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, toolTipText: string) => {
+                bgChange(toolTipText)
+            },
+            Icon: FaceSharpIcon
+          },
         ]);
 
 
